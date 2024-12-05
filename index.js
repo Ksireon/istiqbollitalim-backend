@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 7777;
 app.use(express.json())
 app.use(cors())
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://istiqbollitalim.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-type']
 })
