@@ -22,5 +22,13 @@ router_tur.post('/', async (req, res) => {
         res.status(400).send({ message: error.message })
     }
 })
+router_tur.get('/', async (req, res) => {
+    try {
+      const tasks = await Tur.find();
+      res.status(200).send(tasks);
+    } catch (err) {
+      res.status(500).send({ error: 'Error fetching tasks' });
+    }
+  });
 
 export default router_tur

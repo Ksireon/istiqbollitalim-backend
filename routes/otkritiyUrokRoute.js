@@ -23,4 +23,13 @@ router_otkritiyUrok.post('/', async (req, res) => {
     }
 })
 
+router_otkritiyUrok.get('/', async (req, res) => {
+    try {
+      const tasks = await OtkritiyUrok.find();
+      res.status(200).send(tasks);
+    } catch (err) {
+      res.status(500).send({ error: 'Error fetching tasks' });
+    }
+  });
+
 export default router_otkritiyUrok
