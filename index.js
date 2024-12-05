@@ -31,8 +31,8 @@ app.use('/review', router_review);
 
 
 mongoose
-    .connect("mongodb+srv://dominik:GbqCE2VOSqfKrlCs@istiqbollitalim.rz8wr.mongodb.net/openlessons?retryWrites=true&w=majority&appName=Istiqbollitalim")
-    .then(() => console.log("Connected to MongoDB"), app.listen(PORT, () => {
-        console.log(`server ok ${PORT} port started`);
+    .connect(process.env.MONGODB_URI)
+    .then(() => console.log("Connected to MongoDB"), app.listen(process.env.PORT || 7777, () => {
+        console.log(`server ok port started`);
     }))
     .catch((err) => console.error("Error connecting to MongoDB:", err));
