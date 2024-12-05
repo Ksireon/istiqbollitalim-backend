@@ -1,1 +1,1 @@
-web: node server.js && export NODE_ENV=production
+web: node index.js && export NODE_ENV=production
