@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 7777;
 app.use(express.json())
 app.use(cors())
 app.use(cors({
-    origin: 'https://istiqbollitalim.vercel.app',
+    origin: 'https://istiqbollitalim.com',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-type']
 })
@@ -36,3 +36,4 @@ mongoose
         console.log(`server ok port started`);
     }))
     .catch((err) => console.error("Error connecting to MongoDB:", err));
+    
