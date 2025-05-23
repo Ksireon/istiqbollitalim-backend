@@ -16,7 +16,7 @@ router_tur.post('/', async (req, res) => {
             urok: req.body.urok
         };
         const client = await Tur.create(newTur)
-        return res.status(201).send(client)
+        return res.status(201).send({ message: 'Запись успешно создана', client })
     } catch (error) {
         console.log(error.message);
         res.status(400).send({ message: error.message })

@@ -16,7 +16,7 @@ router_review.post('/', async (req, res) => {
             review: req.body.review
         };
         const client = await Review.create(newReview)
-        return res.status(201).send(client)
+        return res.status(201).send({ message: 'Запись успешно создана', client })
     } catch (error) {
         console.log(error.message);
         res.status(400).send({ message: error.message })

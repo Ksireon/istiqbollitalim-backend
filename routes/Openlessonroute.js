@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
             number: req.body.number
         };
         const client = await OpenLessons.create(newlesson)
-        return res.status(201).send(client)
+        return res.status(201).send({ message: 'Запись успешно создана', client })
     } catch (error) {
         console.log(error.message);
         res.status(400).send({ message: error.message })
