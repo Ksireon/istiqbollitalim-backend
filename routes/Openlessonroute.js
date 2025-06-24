@@ -1,34 +1,51 @@
 import express from 'express';
-import OpenLessons from '../models/Openlessons.js'
+import OpenLessons from '../models/Openlessons.js';
 
 const router = express.Router();
 
+// Create a new lesson request
 router.post('/', async (req, res) => {
-    try {
-        if (!req.body.firsName || !req.body.number) {
-            return res.status(400).send({
-                message: 'Send all required fields: firsName, phone'
-            });
-        }
-        const newlesson = {
-            firsName: req.body.firsName,
-            number: req.body.number
-        };
-        const client = await OpenLessons.create(newlesson)
-        return res.status(201).send({ message: 'Запись успешно создана', client })
-    } catch (error) {
-        console.log(error.message);
-        res.status(400).send({ message: error.message })
+  try {
+    const { firstName, number } = req.body;
+    if (!firstName || !number) {
+      return res.status(400).json({
+        message: 'Send all required fields: firstName, number'
+      });
     }
-})
 
+    const newLesson = { firstName, number };
+    const client = await OpenLessons.create(newLesson);
+    return res.status(201).json({ message: 'Запись успешно создана', client });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(400).json({ message: error.message });
+  }
+});
+
+// Get all lesson requests
 router.get('/', async (req, res) => {
-    try {
-      const tasks = await OpenLessons.find();
-      res.status(200).send(tasks);
-    } catch (err) {
-      res.status(500).send({ error: 'Error fetching tasks' });
-    }
-  });
+  try {
+    const tasks = await OpenLessons.find();
+    return res.status(200).json(tasks);
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({ error: 'Error fetching tasks' });
+  }
+});
 
-export default router
+// Delete a lesson request by ID
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await OpenLessons.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.status(404).json({ message: 'Request not found' });
+    }
+    return res.status(200).json({ message: 'Запись успешно удалена', deleted });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(400).json({ message: error.message });
+  }
+});
+
+export default router;

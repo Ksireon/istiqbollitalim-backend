@@ -32,4 +32,22 @@ router_review.get('/', async (req, res) => {
     }
   });
 
+
+
+  router_review.delete('/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deleted = await Review.findByIdAndDelete(id);
+      if (!deleted) {
+        return res.status(404).json({ message: 'Request not found' });
+      }
+      return res.status(200).json({ message: 'успешно удалена', deleted });
+    } catch (error) {
+      console.error(error.message);
+      return res.status(400).json({ message: error.message });
+    }
+  });
+
+
+  
 export default router_review
