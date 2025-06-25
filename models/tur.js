@@ -9,10 +9,10 @@ const TurSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    urok: {
-        type: String,
-        required: true,
-    }
+    // urok: {
+    //     type: String,
+    //     required: true,
+    // }
 })
 
 export default mongoose.model('Tur', TurSchema);

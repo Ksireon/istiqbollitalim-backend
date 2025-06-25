@@ -5,7 +5,7 @@ const router_tur = express.Router();
 
 router_tur.post('/', async (req, res) => {
     try {
-        if (!req.body.firsName || !req.body.number || !req.body.urok) {
+        if (!req.body.firsName || !req.body.number) {
             return res.status(400).send({
                 message: 'Send all required fields: firsName, phone, lesson'
             });
@@ -13,7 +13,7 @@ router_tur.post('/', async (req, res) => {
         const newTur = {
             firsName: req.body.firsName,
             number: req.body.number,
-            urok: req.body.urok
+            // urok: req.body.urok
         };
         const client = await Tur.create(newTur)
         return res.status(201).send({ message: 'Запись успешно создана', client })
