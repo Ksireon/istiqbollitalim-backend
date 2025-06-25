@@ -6,14 +6,14 @@ const router = express.Router();
 // Create a new lesson request
 router.post('/', async (req, res) => {
   try {
-    const { firstName, number } = req.body;
-    if (!firstName || !number) {
+    const { firsName, number } = req.body;
+    if (!firsName || !number) {
       return res.status(400).json({
         message: 'Send all required fields: firstName, number'
       });
     }
 
-    const newLesson = { firstName, number };
+    const newLesson = { firsName, number };
     const client = await OpenLessons.create(newLesson);
     return res.status(201).json({ message: 'Запись успешно создана', client });
   } catch (error) {
