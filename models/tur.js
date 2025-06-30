@@ -13,6 +13,11 @@ const TurSchema = new mongoose.Schema({
     //     type: String,
     //     required: true,
     // }
+    status: {
+        type: String,
+        enum: ['pending', 'done'],
+        default: 'pending'
+    }
 })
 
 export default mongoose.model('Tur', TurSchema);

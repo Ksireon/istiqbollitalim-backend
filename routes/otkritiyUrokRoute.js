@@ -32,6 +32,27 @@ router_otkritiyUrok.get('/', async (req, res) => {
     }
   });
 
+  // Update status of a urok request
+  router_otkritiyUrok.put('/:id/status', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+      
+      if (!status || !['pending', 'done'].includes(status)) {
+        return res.status(400).json({ message: 'Invalid status. Must be pending or done' });
+      }
+      
+      const updated = await OtkritiyUrok.findByIdAndUpdate(id, { status }, { new: true });
+      if (!updated) {
+        return res.status(404).json({ message: 'Request not found' });
+      }
+      return res.status(200).json({ message: 'Статус успешно обновлен', updated });
+    } catch (error) {
+      console.error(error.message);
+      return res.status(400).json({ message: error.message });
+    }
+  });
+
   router_otkritiyUrok.delete('/:id', async (req, res) => {
     try {
       const { id } = req.params;

@@ -12,6 +12,11 @@ const UrokiSchema = new mongoose.Schema({
     urok: {
         type: String,
         required: true,
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'done'],
+        default: 'pending'
     }
 })
 

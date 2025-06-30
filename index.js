@@ -7,6 +7,7 @@ import router from "./routes/Openlessonroute.js";
 import router_otkritiyUrok from './routes/otkritiyUrokRoute.js'
 import router_tur from './routes/turRoute.js'
 import router_review from './routes/reviewRoute.js'
+import router_completed from './routes/completedRequestsRoute.js'
 
 
 const PORT = process.env.PORT || 7777;
@@ -26,6 +27,7 @@ app.use('/openlessons', router);
 app.use('/otkritiyUrok', router_otkritiyUrok);
 app.use('/tur', router_tur);
 app.use('/review', router_review);
+app.use('/completed-requests', router_completed);
 
 
 mongoose

@@ -8,6 +8,11 @@ const LessonsSchema = new mongoose.Schema({
     number: {
         type: Number,
         required: true,
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'done'],
+        default: 'pending'
     }
 })
 

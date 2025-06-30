@@ -8,6 +8,11 @@ const ReviewSchema = new mongoose.Schema({
     review: {
         type: String,
         required: true,
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'done'],
+        default: 'pending'
     }
 })
 
