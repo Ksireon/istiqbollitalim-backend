@@ -13,7 +13,7 @@ import router_completed from './routes/completedRequestsRoute.js'
 const PORT = process.env.PORT || 7777;
 app.use(express.json())
 app.use(cors({
-    origin: ['https://istiqbollitalim.com', 'https://www.istiqbollitalim.com', 'https://web-production-340a1.up.railway.app', 'http://localhost:3000'],
+    origin: ['https://istiqbollitalim.com', 'https://admin-panel-ashy-one.vercel.app/', 'https://www.istiqbollitalim.com', 'https://web-production-340a1.up.railway.app', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-type']
 }))
